@@ -1,0 +1,141 @@
+object frmTelaHeranca: TfrmTelaHeranca
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  BorderStyle = bsDialog
+  Caption = 'INFORME AQUI O T'#205'TULO'
+  ClientHeight = 539
+  ClientWidth = 938
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  WindowState = wsMinimized
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pgcPrincipal: TPageControl
+    Left = 0
+    Top = 0
+    Width = 938
+    Height = 498
+    ActivePage = TabListagem
+    Align = alClient
+    TabOrder = 0
+    object TabListagem: TTabSheet
+      Caption = 'Listagem'
+      object pnlListagemTopo: TPanel
+        Left = 0
+        Top = 0
+        Width = 930
+        Height = 65
+        Align = alTop
+        TabOrder = 0
+      end
+      object grdListagem: TDBGrid
+        Left = 0
+        Top = 65
+        Width = 930
+        Height = 405
+        Align = alClient
+        TabOrder = 1
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Tahoma'
+        TitleFont.Style = []
+      end
+    end
+    object tabManutencao: TTabSheet
+      Caption = 'Manuten'#231#227'o'
+      ImageIndex = 1
+      ExplicitLeft = 8
+      ExplicitTop = 22
+    end
+  end
+  object pnlRodape: TPanel
+    Left = 0
+    Top = 498
+    Width = 938
+    Height = 41
+    Align = alBottom
+    TabOrder = 1
+    ExplicitTop = 500
+    object btnNovo: TBitBtn
+      Left = 16
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&NOVO'
+      TabOrder = 0
+    end
+    object btnAlterar: TBitBtn
+      Left = 112
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&ALTERAR'
+      TabOrder = 1
+    end
+    object btnCancelar: TBitBtn
+      Left = 208
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&CANCELAR'
+      TabOrder = 2
+    end
+    object btnGravar: TBitBtn
+      Left = 296
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&GRAVAR'
+      TabOrder = 3
+    end
+    object btnApagar: TBitBtn
+      Left = 392
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&APAGAR'
+      TabOrder = 4
+    end
+    object btnFechar: TBitBtn
+      Left = 848
+      Top = 6
+      Width = 74
+      Height = 25
+      Caption = '&FECHAR'
+      TabOrder = 5
+    end
+    object btnNavigator: TDBNavigator
+      Left = 488
+      Top = 6
+      Width = 208
+      Height = 25
+      VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast]
+      TabOrder = 6
+    end
+  end
+  object mskPesquisar: TMaskEdit
+    Left = 32
+    Top = 48
+    Width = 289
+    Height = 21
+    TabOrder = 2
+    Text = ''
+    TextHint = 'Digite sua Pesquisa'
+  end
+  object btnPesquisar: TBitBtn
+    Left = 327
+    Top = 45
+    Width = 75
+    Height = 25
+    Caption = '&PESQUISAR'
+    TabOrder = 3
+  end
+end

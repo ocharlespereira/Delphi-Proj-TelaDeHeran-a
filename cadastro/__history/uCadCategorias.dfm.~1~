@@ -1,0 +1,17 @@
+inherited frmTelaHeranca1: TfrmTelaHeranca1
+  Caption = 'frmTelaHeranca1'
+  WindowState = wsNormal
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    inherited tabManutencao: TTabSheet
+      ExplicitWidth = 0
+      ExplicitHeight = 0
+    end
+  end
+  inherited pnlRodape: TPanel
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+end
