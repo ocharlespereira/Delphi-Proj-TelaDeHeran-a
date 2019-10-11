@@ -6,7 +6,7 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ComCtrls, Vcl.ExtCtrls, uDTMConexao,
-  ZAbstractRODataset, ZAbstractDataset, ZDataset;
+  ZAbstractRODataset, ZAbstractDataset, ZDataset, uEnum;
 
 type
   TfrmTelaHeranca = class(TForm)
@@ -15,8 +15,6 @@ type
     TabListagem: TTabSheet;
     tabManutencao: TTabSheet;
     pnlListagemTopo: TPanel;
-    mskPesquisar: TMaskEdit;
-    btnPesquisar: TBitBtn;
     grdListagem: TDBGrid;
     btnNovo: TBitBtn;
     btnAlterar: TBitBtn;
@@ -27,10 +25,28 @@ type
     btnNavigator: TDBNavigator;
     QryListagem: TZQuery;
     dtsListagem: TDataSource;
+    btnPesquisar: TBitBtn;
+    mskPesquisar: TMaskEdit;
+    Label2: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnApagarClick(Sender: TObject);
+    procedure btnAlterarClick(Sender: TObject);
   private
     { Private declarations }
+    EstadoDoCadastro: TEstadoDoCadastro;
+
+    //receber botoes para fazer ações //bolean (V or F)
+    procedure ControlarBotoes( btnNovo, btnAlterar, btnCancelar,
+              btnGravar, btnApagar: TbitBtn; Navegador:TDBNavigator;
+              pgcPrincipal: TPageControl; Flag: Boolean);
+
+    procedure ControlarIndiceTab(pgcPrincipal: TPageControl; Indice: Integer);
+
+
   public
     { Public declarations }
   end;
@@ -42,9 +58,79 @@ implementation
 
 {$R *.dfm}
 
-procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
+//Procedimento de Controle de Tela
+procedure TfrmTelaHeranca.ControlarBotoes( btnNovo, btnAlterar, btnCancelar,
+              btnGravar, btnApagar: TbitBtn; Navegador:TDBNavigator;
+              pgcPrincipal: TPageControl; Flag: Boolean); //bolean (V or F)
 begin
-  Close;
+  btnNovo.Enabled :=Flag; //valor que futuramente vai ficar flagado
+  btnApagar.Enabled :=Flag;
+  btnAlterar.Enabled :=Flag;
+  Navegador.Enabled :=Flag;
+  pgcPrincipal.Pages[0].TabVisible := Flag; //indice 0 é correspondente as abas, sempre começa por 0
+  btnCancelar.Enabled := not(Flag); //negar informação
+  btnGravar.Enabled := not(Flag);
+
+end;
+
+procedure TfrmTelaHeranca.ControlarIndiceTab(pgcPrincipal: TPageControl; Indice: Integer);
+begin
+  if (pgcPrincipal.Pages[Indice].TabVisible) then  //se o indice q passei está visivel
+     pgcPrincipal.TabIndex := Indice;
+end;
+
+procedure TfrmTelaHeranca.btnNovoClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar,
+                  btnNavigator, pgcPrincipal, false);
+
+  EstadoDoCadastro :=  ecInserir;
+end;
+
+procedure TfrmTelaHeranca.btnAlterarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar,
+                  btnNavigator, pgcPrincipal, false);
+
+  EstadoDoCadastro := ecAlterar;
+end;
+
+procedure TfrmTelaHeranca.btnApagarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar,
+                  btnNavigator, pgcPrincipal, true);
+  ControlarIndiceTab(pgcPrincipal, 0);
+
+  EstadoDoCadastro := ecNenhum;
+end;
+
+procedure TfrmTelaHeranca.btnCancelarClick(Sender: TObject);
+begin
+  ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar,
+                  btnNavigator, pgcPrincipal, true);
+
+  ControlarIndiceTab(pgcPrincipal, 0);
+
+  EstadoDoCadastro := ecNenhum;
+end;
+
+procedure TfrmTelaHeranca.btnGravarClick(Sender: TObject);
+begin
+  Try
+    ControlarBotoes(btnNovo, btnAlterar, btnCancelar, btnGravar, btnApagar,
+                    btnNavigator, pgcPrincipal, true);
+    ControlarIndiceTab(pgcPrincipal, 0);
+
+    if (EstadoDoCadastro = ecInserir) then
+      ShowMessage('Inserir')
+    else if (EstadoDoCadastro  = ecAlterar) then
+      ShowMessage('Alterado')
+    else
+      ShowMessage('Nada aconteceu');
+
+  Finally
+     EstadoDoCadastro := ecNenhum;
+  End;
 end;
 
 procedure TfrmTelaHeranca.FormCreate(Sender: TObject);
@@ -52,6 +138,11 @@ begin
   QryListagem.Connection := dtmPrincipal.conexaoDB;
   dtsListagem.DataSet := QryListagem;
   grdListagem.DataSource := dtsListagem;
+end;
+
+procedure TfrmTelaHeranca.btnFecharClick(Sender: TObject);
+begin
+  Close;
 end;
 
 end.

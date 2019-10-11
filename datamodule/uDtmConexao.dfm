@@ -7,15 +7,15 @@ object dtmPrincipal: TdtmPrincipal
     Catalog = ''
     UseMetadata = False
     Connected = True
-    HostName = 'DESKTOP-CLKPL43'
+    HostName = 'DESKTOP-368SV1S\CHARLES'
     Port = 0
     Database = 'VENDAS'
     User = 'sa'
     Password = 'sa'
     Protocol = 'mssql'
     LibraryLocation = 
-      'G:\NOTEBOOK\TOTVS\Documentos\Embarcadero\Studio\Projects\Projeto' +
-      'Delphi\ntwdblib.dll'
+      'D:\Documentos\Embarcadero\Studio\Projects\Sistema de Vendas\ntwd' +
+      'blib.dll'
     Left = 16
     Top = 16
   end

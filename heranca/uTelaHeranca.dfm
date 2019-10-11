@@ -4,8 +4,8 @@ object frmTelaHeranca: TfrmTelaHeranca
   BorderIcons = [biSystemMenu, biMinimize]
   BorderStyle = bsDialog
   Caption = 'INFORME AQUI O T'#205'TULO'
-  ClientHeight = 539
-  ClientWidth = 938
+  ClientHeight = 542
+  ClientWidth = 877
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,33 +14,44 @@ object frmTelaHeranca: TfrmTelaHeranca
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
-  WindowState = wsMinimized
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pgcPrincipal: TPageControl
     Left = 0
     Top = 0
-    Width = 938
-    Height = 498
+    Width = 877
+    Height = 501
     ActivePage = TabListagem
     Align = alClient
     TabOrder = 0
+    ExplicitWidth = 938
+    ExplicitHeight = 498
     object TabListagem: TTabSheet
       Caption = 'Listagem'
+      ExplicitWidth = 930
+      ExplicitHeight = 470
       object pnlListagemTopo: TPanel
         Left = 0
         Top = 0
-        Width = 930
+        Width = 869
         Height = 65
         Align = alTop
         TabOrder = 0
+        ExplicitWidth = 930
+        object Label2: TLabel
+          Left = 14
+          Top = 5
+          Width = 78
+          Height = 13
+          Caption = 'Campo Pesquisa'
+        end
       end
       object grdListagem: TDBGrid
         Left = 0
         Top = 65
-        Width = 930
-        Height = 405
+        Width = 869
+        Height = 408
         Align = alClient
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
@@ -48,23 +59,53 @@ object frmTelaHeranca: TfrmTelaHeranca
         TitleFont.Height = -11
         TitleFont.Name = 'Tahoma'
         TitleFont.Style = []
+        Columns = <
+          item
+            Expanded = False
+            Visible = True
+          end
+          item
+            Expanded = False
+            Visible = True
+          end>
+      end
+      object mskPesquisar: TMaskEdit
+        Left = 12
+        Top = 23
+        Width = 289
+        Height = 21
+        TabOrder = 2
+        Text = ''
+        TextHint = 'Digite sua Pesquisa'
+      end
+      object btnPesquisar: TBitBtn
+        Left = 307
+        Top = 21
+        Width = 75
+        Height = 25
+        Caption = '&PESQUISAR'
+        TabOrder = 3
       end
     end
     object tabManutencao: TTabSheet
       Caption = 'Manuten'#231#227'o'
       ImageIndex = 1
-      ExplicitLeft = 8
-      ExplicitTop = 22
+      ExplicitWidth = 930
+      ExplicitHeight = 470
     end
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 498
-    Width = 938
+    Top = 501
+    Width = 877
     Height = 41
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 500
+    ExplicitTop = 498
+    ExplicitWidth = 938
+    DesignSize = (
+      877
+      41)
     object btnNovo: TBitBtn
       Left = 16
       Top = 6
@@ -72,6 +113,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&NOVO'
       TabOrder = 0
+      OnClick = btnNovoClick
     end
     object btnAlterar: TBitBtn
       Left = 112
@@ -80,6 +122,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&ALTERAR'
       TabOrder = 1
+      OnClick = btnAlterarClick
     end
     object btnCancelar: TBitBtn
       Left = 208
@@ -88,6 +131,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&CANCELAR'
       TabOrder = 2
+      OnClick = btnCancelarClick
     end
     object btnGravar: TBitBtn
       Left = 296
@@ -96,6 +140,7 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&GRAVAR'
       TabOrder = 3
+      OnClick = btnGravarClick
     end
     object btnApagar: TBitBtn
       Left = 392
@@ -104,12 +149,14 @@ object frmTelaHeranca: TfrmTelaHeranca
       Height = 25
       Caption = '&APAGAR'
       TabOrder = 4
+      OnClick = btnApagarClick
     end
     object btnFechar: TBitBtn
-      Left = 848
+      Left = 791
       Top = 6
       Width = 74
       Height = 25
+      Anchors = [akTop, akRight]
       Caption = '&FECHAR'
       TabOrder = 5
       OnClick = btnFecharClick
@@ -123,25 +170,10 @@ object frmTelaHeranca: TfrmTelaHeranca
       TabOrder = 6
     end
   end
-  object mskPesquisar: TMaskEdit
-    Left = 32
-    Top = 48
-    Width = 289
-    Height = 21
-    TabOrder = 2
-    Text = ''
-    TextHint = 'Digite sua Pesquisa'
-  end
-  object btnPesquisar: TBitBtn
-    Left = 327
-    Top = 45
-    Width = 75
-    Height = 25
-    Caption = '&PESQUISAR'
-    TabOrder = 3
-  end
   object QryListagem: TZQuery
     Connection = dtmPrincipal.conexaoDB
+    SQL.Strings = (
+      'SELECT categoriaid, descricao FROM categoria')
     Params = <>
     Left = 504
     Top = 40

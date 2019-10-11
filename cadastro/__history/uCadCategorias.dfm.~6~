@@ -1,0 +1,33 @@
+inherited frmCadCategoria: TfrmCadCategoria
+  Caption = 'Cadastro de Categorias'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pgcPrincipal: TPageControl
+    inherited TabListagem: TTabSheet
+      inherited grdListagem: TDBGrid
+        Columns = <>
+      end
+    end
+    inherited tabManutencao: TTabSheet
+      ExplicitWidth = 869
+      ExplicitHeight = 473
+    end
+  end
+  inherited pnlRodape: TPanel
+    inherited btnNavigator: TDBNavigator
+      Hints.Strings = ()
+    end
+  end
+  inherited QryListagem: TZQuery
+    Active = True
+    object QryListagemcategoriaid: TIntegerField
+      DisplayLabel = 'C'#243'digo'
+      FieldName = 'categoriaid'
+    end
+    object QryListagemdescricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Size = 100
+    end
+  end
+end

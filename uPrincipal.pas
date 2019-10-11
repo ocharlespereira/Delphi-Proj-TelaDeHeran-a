@@ -68,8 +68,8 @@ begin
   with dtmPrincipal.conexaoDB do begin
     SQLHourGlass := true; //mudar ampulienta quando tiver conxão no banco
     Protocol := 'mssql';
-    LibraryLocation := 'G:\NOTEBOOK\TOTVS\Documentos\Embarcadero\Studio\Projects\ProjetoDelphi\ntwdblib.dll';
-    HostName := 'DESKTOP-CLKPL43';
+    LibraryLocation := 'D:\Documentos\Embarcadero\Studio\Projects\Sistema de Vendas\ntwdblib.dll';
+    HostName := 'DESKTOP-368SV1S\CHARLES';
     Port := 1433;
     User := 'sa';
     Password := 'sa';
